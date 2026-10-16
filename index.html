@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday to my fav,Melissa! ✨</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts: Playfair Display & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warmCream: '#FDFBF7',
+                        terracotta: '#D97757',
+                        sunsetGold: '#E5A93B',
+                        roseDust: '#E39695',
+                        deepBerry: '#4A2833',
+                        softPeach: '#FDECEF'
+                    },
+                    fontFamily: {
+                        sans: ['"Poppins"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        handwriting: ['"Caveat"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        @keyframes floatFast {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-22px) rotate(-3deg); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(229, 169, 59, 0.8)); }
+            50% { filter: drop-shadow(0 0 20px rgba(217, 119, 87, 1)); }
+        }
+
+        .animate-float-slow { animation: floatSlow 5s ease-in-out infinite; }
+        .animate-float-fast { animation: floatFast 3.5s ease-in-out infinite; }
+        .glow-candle { animation: pulseGlow 1.5s ease-in-out infinite; }
+
+        .cake-stage {
+            background: radial-gradient(circle at top, rgba(255,255,255,0.9), rgba(255,240,230,0.78));
+            border: 1px solid rgba(217,119,87,0.18);
+            box-shadow: 0 25px 50px rgba(74, 40, 51, 0.08);
+        }
+        .cake-tier {
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 8px 18px rgba(255,255,255,0.35), 0 18px 30px rgba(74,40,51,0.08);
+        }
+        .cake-tier::before, .cake-tier::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.55) 35%, transparent 58%);
+            opacity: 0.65;
+        }
+        .cake-22 {
+            background: linear-gradient(135deg, #d97757 0%, #e5a93b 45%, #f7d9a1 100%);
+            box-shadow: 0 10px 22px rgba(217,119,87,0.28);
+        }
+        .cake-22::after {
+            content: "22";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.95);
+            text-shadow: 0 3px 12px rgba(74,40,51,0.18);
+        }
+        .cake-bottom {
+            background: linear-gradient(135deg, rgba(246,218,188,0.9), rgba(255,255,255,0.95), rgba(244,191,169,0.9));
+        }
+        .sparkle-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 12px rgba(229,169,59,0.7);
+        }
+
+        .luxury-btn {
+            background: linear-gradient(135deg, #d97757 0%, #e5a93b 100%);
+            box-shadow: 0 12px 24px rgba(217, 119, 87, 0.28);
+        }
+        .luxury-btn:hover {
+            box-shadow: 0 16px 28px rgba(74, 40, 51, 0.22);
+        }
+        .luxury-btn-secondary {
+            background: rgba(255,255,255,0.72);
+            border: 1px solid rgba(217,119,87,0.35);
+            box-shadow: 0 8px 18px rgba(74, 40, 51, 0.08);
+        }
+        .glass-panel {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(217, 119, 87, 0.12);
+            box-shadow: 0 18px 45px rgba(74, 40, 51, 0.08);
+        }
+        .section-shell {
+            border-radius: 2rem;
+            border: 1px solid rgba(217,119,87,0.14);
+            background: rgba(255,255,255,0.7);
+            box-shadow: 0 25px 80px rgba(74, 40, 51, 0.08);
+        }
+        .hero-badge {
+            background: linear-gradient(135deg, rgba(253, 239, 239, 0.95), rgba(255,255,255,0.7));
+            border: 1px solid rgba(217,119,87,0.2);
+            box-shadow: 0 8px 24px rgba(217,119,87,0.08);
+        }
+        .letter-paper {
+            background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(253, 251, 247, 0.9));
+            border: 1px solid rgba(217,119,87,0.15);
+            box-shadow: 0 25px 40px rgba(74, 40, 51, 0.08);
+        }
+        .quote-mark {
+            font-family: 'Playfair Display', serif;
+            color: rgba(217,119,87,0.8);
+        }
+
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #D97757; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-warmCream text-gray-800 font-sans selection:bg-terracotta selection:text-white overflow-x-hidden">
+
+    <!-- Ambient Background Lighting Effects -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-softPeach rounded-full blur-3xl opacity-70 animate-pulse"></div>
+        <div class="absolute top-1/4 -right-20 w-80 h-80 bg-sunsetGold/20 rounded-full blur-3xl opacity-60"></div>
+        <div class="absolute bottom-10 left-1/3 w-96 h-96 bg-roseDust/20 rounded-full blur-3xl opacity-50"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-warmCream/90 border-b border-terracotta/20 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">✨</span>
+                <span class="font-bold text-lg text-deepBerry font-serif tracking-tight">Happy Birthday Bestie!</span>
+            </div>
+            <div class="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-semibold text-gray-700">
+                <a href="#hero" class="hover:text-terracotta transition-colors">Home</a>
+                <a href="#letter" class="hover:text-terracotta transition-colors">Letter</a>
+                <a href="#reasons" class="hover:text-terracotta transition-colors">Reasons</a>
+                <a href="#cake" class="hover:text-terracotta transition-colors">Cake 🎂</a>
+                <button onclick="toggleCodeModal()" class="px-3 py-1.5 bg-terracotta text-white rounded-full shadow-sm hover:bg-deepBerry transition-colors text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-code"></i> View Code
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="relative z-10 max-w-5xl mx-auto px-4 py-8 space-y-16">
+
+        <!-- SECTION 1: HERO -->
+        <section id="hero" class="min-h-[75vh] flex flex-col items-center justify-center text-center relative py-10 space-y-8">
+            
+            <div class="absolute top-2 left-4 sm:left-12 text-4xl sm:text-5xl animate-float-slow opacity-80 pointer-events-none">🎈</div>
+            <div class="absolute top-10 right-6 sm:right-16 text-4xl sm:text-5xl animate-float-fast opacity-80 pointer-events-none">👑</div>
+            <div class="absolute bottom-12 left-8 text-3xl sm:text-4xl animate-float-fast opacity-70 pointer-events-none">💖</div>
+            <div class="absolute bottom-16 right-10 text-4xl sm:text-5xl animate-float-slow opacity-80 pointer-events-none">✨</div>
+
+            <div class="hero-badge inline-flex items-center gap-2 px-5 py-2 rounded-full text-terracotta font-bold text-xs sm:text-sm uppercase tracking-wider">
+                <span>🌟</span> To My Sister & Best Friend for Life <span>🌟</span>
+            </div>
+
+            <div class="glass-panel px-6 sm:px-10 py-8 rounded-[2rem] max-w-3xl">
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold font-serif text-deepBerry tracking-tight leading-tight">
+                    Happy Birthday <br/>
+                    <span class="bg-gradient-to-r from-terracotta via-sunsetGold to-deepBerry bg-clip-text text-transparent">
+                        Melissa!
+                    </span> 🎉
+                </h1>
+            </div>
+
+            <p class="max-w-2xl text-base sm:text-lg text-gray-600 font-normal leading-relaxed">
+                Thank you for your warmth, your smile, your incredible style, and for always being such a real, true friend. May this year bring you endless happiness, peace, and unbelievable success in whatever you set your heart out on!
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 pt-2">
+                <button onclick="triggerConfetti()" class="luxury-btn px-8 py-4 text-white font-bold rounded-full hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 text-base">
+                    <span>🎉 Pop Confetti & Celebrate!</span>
+                </button>
+                <a href="#cake" class="luxury-btn-secondary px-8 py-4 text-terracotta font-bold rounded-full hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 text-base">
+                    <span>Blow Candles 🎂</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SCRAPBOOK LETTER -->
+        <section id="letter" class="relative">
+            <div class="letter-paper rounded-[2rem] p-8 sm:p-12 relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-terracotta via-sunsetGold to-roseDust"></div>
+                <div class="absolute -top-8 -left-8 w-40 h-40 rounded-full bg-roseDust/10 blur-2xl"></div>
+                <div class="absolute -bottom-8 -right-8 w-40 h-40 rounded-full bg-sunsetGold/10 blur-2xl"></div>
+                
+                <div class="max-w-2xl mx-auto space-y-6 relative z-10">
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+                        <span class="font-handwriting text-2xl sm:text-3xl text-terracotta font-bold">With all my heart 💌</span>
+                        <span class="text-xs text-gray-400 font-semibold tracking-[0.2em] uppercase">Birthday Edition</span>
+                    </div>
+
+                    <div class="font-handwriting text-xl sm:text-2xl text-gray-700 leading-relaxed space-y-4">
+                        <p class="text-2xl sm:text-3xl text-deepBerry"><span class="quote-mark text-5xl leading-none">“</span>My Dearest,</p>
+                        
+                        <p>
+                            Happiest of Birthdays! Today, it’s all about celebrating the incredible friend that you are.
+                        </p>
+
+                        <p>
+                            From our endless yapping seshs, sharing our big dreams, to laughing until our stomachs hurt... every single moment with you is a gift. You bring so much warmth, joy, wisdom, and vibrant energy whenever you are around.
+                        </p>
+
+                        <p>
+                           May God keep on blessing you... May this year exceed your highest expectations. May the good doors open effortlessly, may your prayers and hustle pay off in unimaginable ways, and may you be surrounded by boundless love and laughter.
+                        </p>
+
+                        <p class="pt-4">
+                            Cheers to the 22nd year of greatness!<br>
+                            With all my heart,
+                        </p>
+
+                        <p class="text-terracotta font-bold text-3xl font-serif">
+                            — Maria ❤️
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: REASONS WHY YOU ARE AMAZING (3D FLIP CARDS) -->
+        <section id="reasons" class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-deepBerry">Why You're So Amazing 💖</h2>
+                <p class="text-gray-600 max-w-lg mx-auto text-sm sm:text-base">Tap any card below to flip and discover why you're one of a kind!</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+                <div class="perspective-1000 h-52 cursor-pointer group" onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                    <div class="card-inner relative w-full h-full transform-style-3d transition-transform duration-700 rounded-[1.75rem] shadow-lg border border-terracotta/20">
+                        <div class="absolute inset-0 bg-white/90 rounded-[1.75rem] p-6 backface-hidden flex flex-col items-center justify-center text-center space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-softPeach flex items-center justify-center text-2xl text-terracotta">👑</div>
+                            <h3 class="font-bold text-gray-800 text-lg">Pure Diva Energy</h3>
+                            <span class="text-xs text-terracotta font-semibold">Click to flip ↷</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-terracotta via-roseDust to-deepBerry text-white rounded-[1.75rem] p-6 backface-hidden rotate-y-180 flex flex-col items-center justify-center text-center">
+                            <p class="text-sm sm:text-base font-medium">You carry yourself with such love, confidence, and unmatched energy in everything you do!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perspective-1000 h-52 cursor-pointer group" onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                    <div class="card-inner relative w-full h-full transform-style-3d transition-transform duration-700 rounded-[1.75rem] shadow-lg border border-terracotta/20">
+                        <div class="absolute inset-0 bg-white/90 rounded-[1.75rem] p-6 backface-hidden flex flex-col items-center justify-center text-center space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-softPeach flex items-center justify-center text-2xl text-terracotta">✨</div>
+                            <h3 class="font-bold text-gray-800 text-lg">Unstoppable Drive</h3>
+                            <span class="text-xs text-terracotta font-semibold">Click to flip ↷</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-sunsetGold via-terracotta to-deepBerry text-white rounded-[1.75rem] p-6 backface-hidden rotate-y-180 flex flex-col items-center justify-center text-center">
+                            <p class="text-sm sm:text-base font-medium">Your ambition and affirmation inspire me every single day to dream bigger and aim higher.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perspective-1000 h-52 cursor-pointer group" onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                    <div class="card-inner relative w-full h-full transform-style-3d transition-transform duration-700 rounded-[1.75rem] shadow-lg border border-terracotta/20">
+                        <div class="absolute inset-0 bg-white/90 rounded-[1.75rem] p-6 backface-hidden flex flex-col items-center justify-center text-center space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-softPeach flex items-center justify-center text-2xl text-terracotta">😂</div>
+                            <h3 class="font-bold text-gray-800 text-lg">Funny & Warm</h3>
+                            <span class="text-xs text-terracotta font-semibold">Click to flip ↷</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-deepBerry via-roseDust to-terracotta text-white rounded-[1.75rem] p-6 backface-hidden rotate-y-180 flex flex-col items-center justify-center text-center">
+                            <p class="text-sm sm:text-base font-medium">You know how to turn my worst days into laughter with just one voice note and a sticker!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: INTERACTIVE BIRTHDAY CAKE -->
+        <section id="cake" class="cake-stage rounded-[2rem] p-8 sm:p-12 text-center space-y-8 relative overflow-hidden">
+            <div class="absolute -top-16 right-10 w-32 h-32 bg-sunsetGold/10 blur-2xl rounded-full"></div>
+            <div class="absolute -bottom-16 left-8 w-40 h-40 bg-roseDust/10 blur-3xl rounded-full"></div>
+
+            <div class="space-y-2 relative z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-terracotta to-sunsetGold text-white text-xs font-bold uppercase tracking-[0.2em] shadow-md">
+                    Sweet 22 🎉
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-deepBerry">Make a Birthday Wish! 🎂</h2>
+                <p id="cake-instruction" class="text-gray-600 text-sm sm:text-base">Tap the candles to blow them out and make your wish!</p>
+            </div>
+
+            <div class="relative w-72 sm:w-[28rem] h-80 mx-auto flex flex-col items-center justify-end z-10">
+                <span class="absolute -top-0 left-8 sparkle-dot"></span>
+                <span class="absolute -top-2 right-12 sparkle-dot" style="width:10px;height:10px;background:rgba(229,169,59,0.9);"></span>
+                <span class="absolute top-7 left-14 sparkle-dot" style="background:rgba(255,255,255,0.9);"></span>
+                <span class="absolute top-7 right-14 sparkle-dot" style="background:rgba(255,255,255,0.9);"></span>
+
+                <div class="flex gap-6 sm:gap-8 justify-center mb-1 z-20">
+                    <div onclick="toggleCandle(1)" class="cursor-pointer flex flex-col items-center">
+                        <div id="flame-1" class="w-4 h-7 bg-amber-400 rounded-full glow-candle transition-all duration-300"></div>
+                        <div class="w-3 h-12 bg-gradient-to-b from-sunsetGold to-roseDust rounded-t-md shadow-sm"></div>
+                    </div>
+                    <div onclick="toggleCandle(2)" class="cursor-pointer flex flex-col items-center">
+                        <div id="flame-2" class="w-4 h-7 bg-amber-400 rounded-full glow-candle transition-all duration-300"></div>
+                        <div class="w-3 h-14 bg-gradient-to-b from-terracotta to-sunsetGold rounded-t-md shadow-sm"></div>
+                    </div>
+                    <div onclick="toggleCandle(3)" class="cursor-pointer flex flex-col items-center">
+                        <div id="flame-3" class="w-4 h-7 bg-amber-400 rounded-full glow-candle transition-all duration-300"></div>
+                        <div class="w-3 h-12 bg-gradient-to-b from-sunsetGold to-roseDust rounded-t-md shadow-sm"></div>
+                    </div>
+                </div>
+
+                <div class="cake-tier cake-22 w-56 sm:w-72 h-20 rounded-t-[2rem] border-2 border-white/70 relative z-10 flex items-center justify-center text-terracotta">
+                    <span class="font-serif text-xl text-white font-bold">Happy 22nd Birthday!!!</span>
+                </div>
+
+                <div class="cake-tier cake-bottom w-64 sm:w-80 h-24 rounded-b-[2rem] border-t border-white/50 relative flex items-center justify-center z-10">
+                    <div class="text-2xl tracking-widest">🍓 👑 🍓 👑 🍓</div>
+                </div>
+                <div class="w-72 sm:w-[26rem] h-4 bg-gradient-to-r from-gray-200 via-white to-gray-200 rounded-full shadow-inner mt-2"></div>
+            </div>
+
+            <div id="wish-message" class="hidden relative z-10 p-4 rounded-2xl bg-softPeach text-terracotta font-bold text-lg animate-bounce">
+                🎉 Your wish has been sent to the stars! May all your dreams manifest! ✨
+            </div>
+
+            <div class="relative z-10">
+                <button onclick="resetCandles()" class="text-xs text-gray-500 underline hover:text-terracotta transition-colors">
+                    Relight Candles 🕯️
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CODE VIEWER MODAL -->
+    <div id="code-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-lg text-deepBerry">Source Code & Customization Guide 💻</h3>
+                <button onclick="toggleCodeModal()" class="text-gray-500 hover:text-gray-800 text-xl font-bold">&times;</button>
+            </div>
+            <div class="text-xs text-gray-600 space-y-2 overflow-y-auto flex-1 bg-gray-50 p-4 rounded-xl font-mono">
+                <p><strong>Simple birthday page note:</strong></p>
+                <p>This page is designed to feel personal, warm, and easy to read. You can keep the heartfelt message, the cake moment, and the little celebration details as they are.</p>
+                <hr class="my-2">
+                <p><strong>Page structure:</strong></p>
+                <p>Hero greeting → birthday letter → reasons to love you → candle wish moment.</p>
+            </div>
+            <div class="text-right">
+                <button onclick="toggleCodeModal()" class="px-5 py-2 bg-terracotta text-white rounded-xl text-xs font-bold hover:bg-deepBerry">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-8 text-xs text-gray-500 border-t border-terracotta/20 mt-20 space-y-2">
+        <p>Made with love for an amazing person.</p>
+        <p>Happy Birthday! 🎉</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function triggerConfetti() {
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#D97757', '#E5A93B', '#E39695', '#4A2833']
+            });
+        }
+
+        function toggleCodeModal() {
+            const modal = document.getElementById('code-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Candle logic
+        let activeCandles = [true, true, true];
+        function toggleCandle(index) {
+            activeCandles[index - 1] = false;
+            document.getElementById(`flame-${index}`).classList.add('opacity-0', 'scale-0');
+            if (activeCandles.every(c => c === false)) {
+                document.getElementById('wish-message').classList.remove('hidden');
+                document.getElementById('cake-instruction').innerText = "All candles blown out! Yay! 🥳";
+                triggerConfetti();
+            }
+        }
+
+        function resetCandles() {
+            activeCandles = [true, true, true];
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`flame-${i}`).classList.remove('opacity-0', 'scale-0');
+            }
+            document.getElementById('wish-message').classList.add('hidden');
+            document.getElementById('cake-instruction').innerText = "Tap the candles to blow them out and make your wish!";
+        }
+
+    </script>
+</body>
+</html>
